@@ -34,6 +34,8 @@
             this.nuevaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.consultarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.modificarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.soporteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.asignaturasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -50,7 +52,8 @@
             // 
             this.menuStrip2.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.carreraToolStripMenuItem});
+            this.carreraToolStripMenuItem,
+            this.soporteToolStripMenuItem});
             this.menuStrip2.Location = new System.Drawing.Point(0, 0);
             this.menuStrip2.Name = "menuStrip2";
             this.menuStrip2.Size = new System.Drawing.Size(891, 28);
@@ -70,23 +73,38 @@
             // nuevaToolStripMenuItem
             // 
             this.nuevaToolStripMenuItem.Name = "nuevaToolStripMenuItem";
-            this.nuevaToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.nuevaToolStripMenuItem.Size = new System.Drawing.Size(156, 26);
             this.nuevaToolStripMenuItem.Text = "Nueva";
             this.nuevaToolStripMenuItem.Click += new System.EventHandler(this.nuevaToolStripMenuItem_Click);
             // 
             // consultarToolStripMenuItem
             // 
             this.consultarToolStripMenuItem.Name = "consultarToolStripMenuItem";
-            this.consultarToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.consultarToolStripMenuItem.Size = new System.Drawing.Size(156, 26);
             this.consultarToolStripMenuItem.Text = "Consultar";
             this.consultarToolStripMenuItem.Click += new System.EventHandler(this.consultarToolStripMenuItem_Click);
             // 
             // modificarToolStripMenuItem
             // 
             this.modificarToolStripMenuItem.Name = "modificarToolStripMenuItem";
-            this.modificarToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.modificarToolStripMenuItem.Size = new System.Drawing.Size(156, 26);
             this.modificarToolStripMenuItem.Text = "Modificar";
             this.modificarToolStripMenuItem.Click += new System.EventHandler(this.modificarToolStripMenuItem_Click);
+            // 
+            // soporteToolStripMenuItem
+            // 
+            this.soporteToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.asignaturasToolStripMenuItem});
+            this.soporteToolStripMenuItem.Name = "soporteToolStripMenuItem";
+            this.soporteToolStripMenuItem.Size = new System.Drawing.Size(76, 24);
+            this.soporteToolStripMenuItem.Text = "Soporte";
+            // 
+            // asignaturasToolStripMenuItem
+            // 
+            this.asignaturasToolStripMenuItem.Name = "asignaturasToolStripMenuItem";
+            this.asignaturasToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.asignaturasToolStripMenuItem.Text = "Asignaturas";
+            this.asignaturasToolStripMenuItem.Click += new System.EventHandler(this.asignaturasToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -115,6 +133,8 @@
         private System.Windows.Forms.ToolStripMenuItem nuevaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem consultarToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem modificarToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem soporteToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem asignaturasToolStripMenuItem;
     }
 }
 

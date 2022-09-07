@@ -191,5 +191,14 @@ namespace Carrera1._1
                 }
             }
         }
+
+        private void DtgDetalles_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+            if (DtgDetalles.CurrentCell.ColumnIndex == 4)
+            {
+                carrera.QuitarDetalle(DtgDetalles.CurrentRow.Index);
+                DtgDetalles.Rows.Remove(DtgDetalles.CurrentRow);
+            }
+        }
     }
 }

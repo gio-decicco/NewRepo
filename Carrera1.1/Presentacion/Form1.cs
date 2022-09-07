@@ -37,5 +37,12 @@ namespace Carrera1._1
             form.ShowDialog();
             form.Dispose();
         }
+
+        private void asignaturasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Presentacion.ABMAsignaturas form = new Presentacion.ABMAsignaturas();
+            form.ShowDialog();
+            form.Dispose();
+        }
     }
 }

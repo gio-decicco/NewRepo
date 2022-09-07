@@ -120,3 +120,9 @@ create procedure spConsultarCarrera
 as
 select * from Carrera
 where idCarrera = @idCarrera
+
+create procedure spEliminarDetalle
+@idCarrera int
+as
+delete DetalleCarrera
+where idCarrera = @idCarrera

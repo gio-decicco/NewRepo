@@ -111,60 +111,33 @@ namespace Carrera1._1
         {
             bool resultado = true;
             SqlTransaction t = null;
-            if (eliminarDetalle(carrera.IdCarrera))
-            {
-                try
-                {
-                    conectar();
-                    t = cnn.BeginTransaction();
-                    int idDetalle = 1;
-                    foreach (DetalleCarrera detalle in carrera.Detalles)
-                    {
-                        SqlCommand cmdDetalle = new SqlCommand();
-                        cmdDetalle.Transaction = t;
-                        cmdDetalle.Connection = cnn;
-                        cmdDetalle.CommandType = CommandType.StoredProcedure;
-                        cmdDetalle.CommandText = "spInsertarDetalle";
-                        cmdDetalle.Parameters.AddWithValue("@idDetalle", idDetalle);
-                        cmdDetalle.Parameters.AddWithValue("@idCarrera", carrera.IdCarrera);
-                        cmdDetalle.Parameters.AddWithValue("@idAsignatura", detalle.Asignatura.idAsignatura);
-                        cmdDetalle.Parameters.AddWithValue("@anio", detalle.AñoCursado);
-                        cmdDetalle.Parameters.AddWithValue("@cuatrimestre", detalle.Cuatrimestre);
-                        cmdDetalle.ExecuteNonQuery();
-
-                        idDetalle++;
-                        cmdDetalle.Parameters.Clear();
-                    }
-                }
-                catch (Exception)
-                {
-                    t.Rollback();
-                    resultado = false;
-                }
-                finally
-                {
-                    if(cnn.State == ConnectionState.Open)
-                    {
-                        desconectar();
-                    }
-                }
-            }
-            return resultado;
-        }
-
-        public bool eliminarDetalle(int idCarrera)
-        {
-            bool resultado = true;
-            SqlTransaction t = null;
-
             try
             {
                 conectar();
                 t = cnn.BeginTransaction();
                 cmd.Transaction = t;
                 cmd.CommandText = "spEliminarDetalle";
-                cmd.Parameters.AddWithValue("idCarrera", idCarrera);
+                cmd.Parameters.AddWithValue("@idCarrera", carrera.IdCarrera);
                 cmd.ExecuteNonQuery();
+
+                int idDetalle = 1;
+                foreach(DetalleCarrera detalle in carrera.Detalles)
+                {
+                    SqlCommand cmdDetalle = new SqlCommand();
+                    cmdDetalle.Transaction = t;
+                    cmdDetalle.Connection = cnn;
+                    cmdDetalle.CommandType = CommandType.StoredProcedure;
+                    cmdDetalle.CommandText = "spInsertarDetalle";
+                    cmdDetalle.Parameters.AddWithValue("@idDetalle", idDetalle);
+                    cmdDetalle.Parameters.AddWithValue("@idCarrera", carrera.IdCarrera);
+                    cmdDetalle.Parameters.AddWithValue("@idAsignatura", detalle.Asignatura.idAsignatura);
+                    cmdDetalle.Parameters.AddWithValue("@anio", detalle.AñoCursado);
+                    cmdDetalle.Parameters.AddWithValue("@cuatrimestre", detalle.Cuatrimestre);
+                    cmdDetalle.ExecuteNonQuery();
+
+                    idDetalle++;
+                    cmdDetalle.Parameters.Clear();
+                }
                 t.Commit();
             }
             catch (Exception)
@@ -306,6 +279,35 @@ namespace Carrera1._1
             dt.Load(cmd.ExecuteReader());
             desconectar();
             return dt;
+        }
+
+        public bool insertarAsignatura(string nombre)
+        {
+            bool resultado = true;
+            SqlTransaction t = null;
+            try
+            {
+                conectar();
+                t = cnn.BeginTransaction();
+                cmd.Transaction = t;
+                cmd.CommandText = "spInsertarAsignatura";
+                cmd.Parameters.AddWithValue("@nombre", nombre);
+                cmd.ExecuteNonQuery();
+                t.Commit();
+            }
+            catch (Exception)
+            {
+                t.Rollback();
+                resultado = false;
+            }
+            finally
+            {
+                if (cnn.State == ConnectionState.Open)
+                {
+                    desconectar();
+                }
+            }
+            return resultado;
         }
         //public DataTable consultarDetalles(int idCarrera)
         //{

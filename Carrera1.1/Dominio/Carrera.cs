@@ -23,6 +23,11 @@ namespace Carrera1._1
         {
             Detalles.Add(detalle);
         }
+
+        public void QuitarDetalle(int indice)
+        {
+            Detalles.RemoveAt(indice);
+        }
         public override string ToString()
         {
             return this.NombreCarrrera;

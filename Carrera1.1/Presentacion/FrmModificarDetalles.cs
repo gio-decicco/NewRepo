@@ -208,5 +208,14 @@ namespace Carrera1._1.Presentacion
         {
             Dispose();
         }
+
+        private void DtgDetalles_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (DtgDetalles.CurrentCell.ColumnIndex == 4)
+            {
+                lCarreras[LstCarreras.SelectedIndex].QuitarDetalle(DtgDetalles.CurrentRow.Index);
+                DtgDetalles.Rows.Remove(DtgDetalles.CurrentRow);
+            }
+        }
     }
 }

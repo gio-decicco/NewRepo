@@ -29,11 +29,6 @@
         private void InitializeComponent()
         {
             this.DtgDetalles = new System.Windows.Forms.DataGridView();
-            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colAsignatura = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.AñoCursado = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CuatriCursado = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Asign = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CboAsignaturas = new System.Windows.Forms.ComboBox();
             this.BtnAgregarDetalle = new System.Windows.Forms.Button();
             this.TbAño = new System.Windows.Forms.TextBox();
@@ -50,6 +45,11 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.BtnGuardar = new System.Windows.Forms.Button();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colAsignatura = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AñoCursado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CuatriCursado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BotQuitar = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.DtgDetalles)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -65,13 +65,187 @@
             this.colAsignatura,
             this.AñoCursado,
             this.CuatriCursado,
-            this.Asign});
-            this.DtgDetalles.Location = new System.Drawing.Point(22, 144);
+            this.BotQuitar});
+            this.DtgDetalles.Location = new System.Drawing.Point(29, 177);
+            this.DtgDetalles.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.DtgDetalles.Name = "DtgDetalles";
             this.DtgDetalles.ReadOnly = true;
             this.DtgDetalles.RowHeadersWidth = 51;
-            this.DtgDetalles.Size = new System.Drawing.Size(342, 154);
+            this.DtgDetalles.Size = new System.Drawing.Size(456, 190);
             this.DtgDetalles.TabIndex = 0;
+            this.DtgDetalles.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DtgDetalles_CellContentClick_1);
+            // 
+            // CboAsignaturas
+            // 
+            this.CboAsignaturas.FormattingEnabled = true;
+            this.CboAsignaturas.Location = new System.Drawing.Point(139, 27);
+            this.CboAsignaturas.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.CboAsignaturas.Name = "CboAsignaturas";
+            this.CboAsignaturas.Size = new System.Drawing.Size(233, 24);
+            this.CboAsignaturas.TabIndex = 1;
+            // 
+            // BtnAgregarDetalle
+            // 
+            this.BtnAgregarDetalle.Location = new System.Drawing.Point(357, 116);
+            this.BtnAgregarDetalle.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BtnAgregarDetalle.Name = "BtnAgregarDetalle";
+            this.BtnAgregarDetalle.Size = new System.Drawing.Size(128, 26);
+            this.BtnAgregarDetalle.TabIndex = 2;
+            this.BtnAgregarDetalle.Text = "Agregar";
+            this.BtnAgregarDetalle.UseVisualStyleBackColor = true;
+            this.BtnAgregarDetalle.Click += new System.EventHandler(this.BtnAgregarDetalle_Click);
+            // 
+            // TbAño
+            // 
+            this.TbAño.Location = new System.Drawing.Point(139, 73);
+            this.TbAño.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.TbAño.Name = "TbAño";
+            this.TbAño.Size = new System.Drawing.Size(187, 22);
+            this.TbAño.TabIndex = 3;
+            // 
+            // TbCuatri
+            // 
+            this.TbCuatri.Location = new System.Drawing.Point(139, 117);
+            this.TbCuatri.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.TbCuatri.Name = "TbCuatri";
+            this.TbCuatri.Size = new System.Drawing.Size(187, 22);
+            this.TbCuatri.TabIndex = 4;
+            // 
+            // LblProximoId
+            // 
+            this.LblProximoId.AutoSize = true;
+            this.LblProximoId.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblProximoId.Location = new System.Drawing.Point(201, 31);
+            this.LblProximoId.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LblProximoId.Name = "LblProximoId";
+            this.LblProximoId.Size = new System.Drawing.Size(122, 25);
+            this.LblProximoId.TabIndex = 5;
+            this.LblProximoId.Text = "Id Carrera: ";
+            // 
+            // LblAño
+            // 
+            this.LblAño.AutoSize = true;
+            this.LblAño.Location = new System.Drawing.Point(96, 78);
+            this.LblAño.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LblAño.Name = "LblAño";
+            this.LblAño.Size = new System.Drawing.Size(31, 16);
+            this.LblAño.TabIndex = 6;
+            this.LblAño.Text = "Año";
+            // 
+            // LblCuatrimestre
+            // 
+            this.LblCuatrimestre.AutoSize = true;
+            this.LblCuatrimestre.Location = new System.Drawing.Point(44, 121);
+            this.LblCuatrimestre.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LblCuatrimestre.Name = "LblCuatrimestre";
+            this.LblCuatrimestre.Size = new System.Drawing.Size(82, 16);
+            this.LblCuatrimestre.TabIndex = 7;
+            this.LblCuatrimestre.Text = "Cuatrimestre";
+            // 
+            // TbNombreC
+            // 
+            this.TbNombreC.Location = new System.Drawing.Point(203, 79);
+            this.TbNombreC.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.TbNombreC.Name = "TbNombreC";
+            this.TbNombreC.Size = new System.Drawing.Size(244, 22);
+            this.TbNombreC.TabIndex = 8;
+            // 
+            // TbTitulo
+            // 
+            this.TbTitulo.Location = new System.Drawing.Point(203, 135);
+            this.TbTitulo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.TbTitulo.Name = "TbTitulo";
+            this.TbTitulo.Size = new System.Drawing.Size(244, 22);
+            this.TbTitulo.TabIndex = 9;
+            // 
+            // LblNomCarrera
+            // 
+            this.LblNomCarrera.AutoSize = true;
+            this.LblNomCarrera.Location = new System.Drawing.Point(68, 82);
+            this.LblNomCarrera.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LblNomCarrera.Name = "LblNomCarrera";
+            this.LblNomCarrera.Size = new System.Drawing.Size(123, 16);
+            this.LblNomCarrera.TabIndex = 10;
+            this.LblNomCarrera.Text = "Nombre de Carrera";
+            // 
+            // LblTitulo
+            // 
+            this.LblTitulo.AutoSize = true;
+            this.LblTitulo.Location = new System.Drawing.Point(79, 139);
+            this.LblTitulo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LblTitulo.Name = "LblTitulo";
+            this.LblTitulo.Size = new System.Drawing.Size(107, 16);
+            this.LblTitulo.TabIndex = 11;
+            this.LblTitulo.Text = "Título de Carrera";
+            // 
+            // BtnCancelar
+            // 
+            this.BtnCancelar.Location = new System.Drawing.Point(311, 374);
+            this.BtnCancelar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BtnCancelar.Name = "BtnCancelar";
+            this.BtnCancelar.Size = new System.Drawing.Size(152, 28);
+            this.BtnCancelar.TabIndex = 13;
+            this.BtnCancelar.Text = "Cancelar";
+            this.BtnCancelar.UseVisualStyleBackColor = true;
+            this.BtnCancelar.Click += new System.EventHandler(this.BtnCancelar_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(55, 31);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(71, 16);
+            this.label1.TabIndex = 14;
+            this.label1.Text = "Asignatura";
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.LblTitulo);
+            this.groupBox1.Controls.Add(this.LblNomCarrera);
+            this.groupBox1.Controls.Add(this.TbTitulo);
+            this.groupBox1.Controls.Add(this.TbNombreC);
+            this.groupBox1.Controls.Add(this.LblProximoId);
+            this.groupBox1.Location = new System.Drawing.Point(11, 11);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Size = new System.Drawing.Size(539, 210);
+            this.groupBox1.TabIndex = 15;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Datos de Carrera";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.BtnGuardar);
+            this.groupBox2.Controls.Add(this.label1);
+            this.groupBox2.Controls.Add(this.LblCuatrimestre);
+            this.groupBox2.Controls.Add(this.BtnCancelar);
+            this.groupBox2.Controls.Add(this.LblAño);
+            this.groupBox2.Controls.Add(this.TbCuatri);
+            this.groupBox2.Controls.Add(this.TbAño);
+            this.groupBox2.Controls.Add(this.BtnAgregarDetalle);
+            this.groupBox2.Controls.Add(this.CboAsignaturas);
+            this.groupBox2.Controls.Add(this.DtgDetalles);
+            this.groupBox2.Location = new System.Drawing.Point(19, 242);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox2.Size = new System.Drawing.Size(516, 415);
+            this.groupBox2.TabIndex = 16;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Detalles de Carrera";
+            // 
+            // BtnGuardar
+            // 
+            this.BtnGuardar.Location = new System.Drawing.Point(48, 374);
+            this.BtnGuardar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BtnGuardar.Name = "BtnGuardar";
+            this.BtnGuardar.Size = new System.Drawing.Size(152, 28);
+            this.BtnGuardar.TabIndex = 15;
+            this.BtnGuardar.Text = "Guardar";
+            this.BtnGuardar.UseVisualStyleBackColor = true;
+            this.BtnGuardar.Click += new System.EventHandler(this.BtnGuardar_Click);
             // 
             // ID
             // 
@@ -106,176 +280,25 @@
             this.CuatriCursado.ReadOnly = true;
             this.CuatriCursado.Width = 80;
             // 
-            // Asign
+            // BotQuitar
             // 
-            this.Asign.HeaderText = "AsignaturaObjeto";
-            this.Asign.MinimumWidth = 6;
-            this.Asign.Name = "Asign";
-            this.Asign.ReadOnly = true;
-            this.Asign.Visible = false;
-            this.Asign.Width = 125;
-            // 
-            // CboAsignaturas
-            // 
-            this.CboAsignaturas.FormattingEnabled = true;
-            this.CboAsignaturas.Location = new System.Drawing.Point(104, 22);
-            this.CboAsignaturas.Name = "CboAsignaturas";
-            this.CboAsignaturas.Size = new System.Drawing.Size(176, 21);
-            this.CboAsignaturas.TabIndex = 1;
-            // 
-            // BtnAgregarDetalle
-            // 
-            this.BtnAgregarDetalle.Location = new System.Drawing.Point(268, 94);
-            this.BtnAgregarDetalle.Name = "BtnAgregarDetalle";
-            this.BtnAgregarDetalle.Size = new System.Drawing.Size(96, 21);
-            this.BtnAgregarDetalle.TabIndex = 2;
-            this.BtnAgregarDetalle.Text = "Agregar";
-            this.BtnAgregarDetalle.UseVisualStyleBackColor = true;
-            this.BtnAgregarDetalle.Click += new System.EventHandler(this.BtnAgregarDetalle_Click);
-            // 
-            // TbAño
-            // 
-            this.TbAño.Location = new System.Drawing.Point(104, 59);
-            this.TbAño.Name = "TbAño";
-            this.TbAño.Size = new System.Drawing.Size(141, 20);
-            this.TbAño.TabIndex = 3;
-            // 
-            // TbCuatri
-            // 
-            this.TbCuatri.Location = new System.Drawing.Point(104, 95);
-            this.TbCuatri.Name = "TbCuatri";
-            this.TbCuatri.Size = new System.Drawing.Size(141, 20);
-            this.TbCuatri.TabIndex = 4;
-            // 
-            // LblProximoId
-            // 
-            this.LblProximoId.AutoSize = true;
-            this.LblProximoId.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblProximoId.Location = new System.Drawing.Point(151, 25);
-            this.LblProximoId.Name = "LblProximoId";
-            this.LblProximoId.Size = new System.Drawing.Size(100, 20);
-            this.LblProximoId.TabIndex = 5;
-            this.LblProximoId.Text = "Id Carrera: ";
-            // 
-            // LblAño
-            // 
-            this.LblAño.AutoSize = true;
-            this.LblAño.Location = new System.Drawing.Point(72, 63);
-            this.LblAño.Name = "LblAño";
-            this.LblAño.Size = new System.Drawing.Size(26, 13);
-            this.LblAño.TabIndex = 6;
-            this.LblAño.Text = "Año";
-            // 
-            // LblCuatrimestre
-            // 
-            this.LblCuatrimestre.AutoSize = true;
-            this.LblCuatrimestre.Location = new System.Drawing.Point(33, 98);
-            this.LblCuatrimestre.Name = "LblCuatrimestre";
-            this.LblCuatrimestre.Size = new System.Drawing.Size(65, 13);
-            this.LblCuatrimestre.TabIndex = 7;
-            this.LblCuatrimestre.Text = "Cuatrimestre";
-            // 
-            // TbNombreC
-            // 
-            this.TbNombreC.Location = new System.Drawing.Point(152, 64);
-            this.TbNombreC.Name = "TbNombreC";
-            this.TbNombreC.Size = new System.Drawing.Size(184, 20);
-            this.TbNombreC.TabIndex = 8;
-            // 
-            // TbTitulo
-            // 
-            this.TbTitulo.Location = new System.Drawing.Point(152, 110);
-            this.TbTitulo.Name = "TbTitulo";
-            this.TbTitulo.Size = new System.Drawing.Size(184, 20);
-            this.TbTitulo.TabIndex = 9;
-            // 
-            // LblNomCarrera
-            // 
-            this.LblNomCarrera.AutoSize = true;
-            this.LblNomCarrera.Location = new System.Drawing.Point(51, 67);
-            this.LblNomCarrera.Name = "LblNomCarrera";
-            this.LblNomCarrera.Size = new System.Drawing.Size(96, 13);
-            this.LblNomCarrera.TabIndex = 10;
-            this.LblNomCarrera.Text = "Nombre de Carrera";
-            // 
-            // LblTitulo
-            // 
-            this.LblTitulo.AutoSize = true;
-            this.LblTitulo.Location = new System.Drawing.Point(59, 113);
-            this.LblTitulo.Name = "LblTitulo";
-            this.LblTitulo.Size = new System.Drawing.Size(87, 13);
-            this.LblTitulo.TabIndex = 11;
-            this.LblTitulo.Text = "Título de Carrera";
-            // 
-            // BtnCancelar
-            // 
-            this.BtnCancelar.Location = new System.Drawing.Point(233, 304);
-            this.BtnCancelar.Name = "BtnCancelar";
-            this.BtnCancelar.Size = new System.Drawing.Size(114, 23);
-            this.BtnCancelar.TabIndex = 13;
-            this.BtnCancelar.Text = "Cancelar";
-            this.BtnCancelar.UseVisualStyleBackColor = true;
-            this.BtnCancelar.Click += new System.EventHandler(this.BtnCancelar_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(41, 25);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(57, 13);
-            this.label1.TabIndex = 14;
-            this.label1.Text = "Asignatura";
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.LblTitulo);
-            this.groupBox1.Controls.Add(this.LblNomCarrera);
-            this.groupBox1.Controls.Add(this.TbTitulo);
-            this.groupBox1.Controls.Add(this.TbNombreC);
-            this.groupBox1.Controls.Add(this.LblProximoId);
-            this.groupBox1.Location = new System.Drawing.Point(8, 9);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(404, 171);
-            this.groupBox1.TabIndex = 15;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Datos de Carrera";
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.BtnGuardar);
-            this.groupBox2.Controls.Add(this.label1);
-            this.groupBox2.Controls.Add(this.LblCuatrimestre);
-            this.groupBox2.Controls.Add(this.BtnCancelar);
-            this.groupBox2.Controls.Add(this.LblAño);
-            this.groupBox2.Controls.Add(this.TbCuatri);
-            this.groupBox2.Controls.Add(this.TbAño);
-            this.groupBox2.Controls.Add(this.BtnAgregarDetalle);
-            this.groupBox2.Controls.Add(this.CboAsignaturas);
-            this.groupBox2.Controls.Add(this.DtgDetalles);
-            this.groupBox2.Location = new System.Drawing.Point(14, 197);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(387, 337);
-            this.groupBox2.TabIndex = 16;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Detalles de Carrera";
-            // 
-            // BtnGuardar
-            // 
-            this.BtnGuardar.Location = new System.Drawing.Point(36, 304);
-            this.BtnGuardar.Name = "BtnGuardar";
-            this.BtnGuardar.Size = new System.Drawing.Size(114, 23);
-            this.BtnGuardar.TabIndex = 15;
-            this.BtnGuardar.Text = "Guardar";
-            this.BtnGuardar.UseVisualStyleBackColor = true;
-            this.BtnGuardar.Click += new System.EventHandler(this.BtnGuardar_Click);
+            this.BotQuitar.HeaderText = "Quitar";
+            this.BotQuitar.MinimumWidth = 6;
+            this.BotQuitar.Name = "BotQuitar";
+            this.BotQuitar.ReadOnly = true;
+            this.BotQuitar.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.BotQuitar.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.BotQuitar.Text = "Quitar";
+            this.BotQuitar.Width = 60;
             // 
             // NuevaCarrera
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(418, 542);
+            this.ClientSize = new System.Drawing.Size(557, 667);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "NuevaCarrera";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "NuevaCarrera";
@@ -312,6 +335,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colAsignatura;
         private System.Windows.Forms.DataGridViewTextBoxColumn AñoCursado;
         private System.Windows.Forms.DataGridViewTextBoxColumn CuatriCursado;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Asign;
+        private System.Windows.Forms.DataGridViewButtonColumn BotQuitar;
     }
 }
