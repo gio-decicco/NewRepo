@@ -40,12 +40,6 @@ namespace Carrera1._1.Presentacion
             }
         }
 
-        private void BtnNueva_Click(object sender, EventArgs e)
-        {
-            AltaAsignatura form = new AltaAsignatura();
-            form.ShowDialog();
-            form.Dispose();
-            cargarLista();
-        }
+        
     }
 }

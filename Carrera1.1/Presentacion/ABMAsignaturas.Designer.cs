@@ -51,7 +51,6 @@
             this.BtnNueva.TabIndex = 1;
             this.BtnNueva.Text = "Nueva";
             this.BtnNueva.UseVisualStyleBackColor = true;
-            this.BtnNueva.Click += new System.EventHandler(this.BtnNueva_Click);
             // 
             // BtnEliminar
             // 
