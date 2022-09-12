@@ -35,7 +35,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.TxtTitulo = new System.Windows.Forms.TextBox();
             this.BtnEditar = new System.Windows.Forms.Button();
-            this.Carrera = new System.Windows.Forms.GroupBox();
+            this.GroupCarrera = new System.Windows.Forms.GroupBox();
             this.LstCarreras = new System.Windows.Forms.ListBox();
             this.Detalles = new System.Windows.Forms.GroupBox();
             this.BtnAgregarDetalle = new System.Windows.Forms.Button();
@@ -51,7 +51,7 @@
             this.ColAño = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColCuatri = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColQuitar = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.Carrera.SuspendLayout();
+            this.GroupCarrera.SuspendLayout();
             this.Detalles.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DtgDetalles)).BeginInit();
             this.SuspendLayout();
@@ -123,29 +123,29 @@
             this.BtnEditar.UseVisualStyleBackColor = true;
             this.BtnEditar.Click += new System.EventHandler(this.BtnEditar_Click);
             // 
-            // Carrera
+            // GroupCarrera
             // 
-            this.Carrera.Controls.Add(this.LstCarreras);
-            this.Carrera.Controls.Add(this.BtnEditar);
-            this.Carrera.Controls.Add(this.label6);
-            this.Carrera.Controls.Add(this.TxtTitulo);
-            this.Carrera.Controls.Add(this.TxtNombre);
-            this.Carrera.Controls.Add(this.label5);
-            this.Carrera.Location = new System.Drawing.Point(12, 15);
-            this.Carrera.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.Carrera.Name = "Carrera";
-            this.Carrera.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.Carrera.Size = new System.Drawing.Size(835, 399);
-            this.Carrera.TabIndex = 17;
-            this.Carrera.TabStop = false;
-            this.Carrera.Text = "Carrera";
+            this.GroupCarrera.Controls.Add(this.LstCarreras);
+            this.GroupCarrera.Controls.Add(this.BtnEditar);
+            this.GroupCarrera.Controls.Add(this.label6);
+            this.GroupCarrera.Controls.Add(this.TxtTitulo);
+            this.GroupCarrera.Controls.Add(this.TxtNombre);
+            this.GroupCarrera.Controls.Add(this.label5);
+            this.GroupCarrera.Location = new System.Drawing.Point(12, 15);
+            this.GroupCarrera.Margin = new System.Windows.Forms.Padding(4);
+            this.GroupCarrera.Name = "GroupCarrera";
+            this.GroupCarrera.Padding = new System.Windows.Forms.Padding(4);
+            this.GroupCarrera.Size = new System.Drawing.Size(835, 399);
+            this.GroupCarrera.TabIndex = 17;
+            this.GroupCarrera.TabStop = false;
+            this.GroupCarrera.Text = "Carrera";
             // 
             // LstCarreras
             // 
             this.LstCarreras.FormattingEnabled = true;
             this.LstCarreras.ItemHeight = 16;
             this.LstCarreras.Location = new System.Drawing.Point(8, 23);
-            this.LstCarreras.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.LstCarreras.Margin = new System.Windows.Forms.Padding(4);
             this.LstCarreras.Name = "LstCarreras";
             this.LstCarreras.Size = new System.Drawing.Size(415, 356);
             this.LstCarreras.TabIndex = 17;
@@ -162,9 +162,9 @@
             this.Detalles.Controls.Add(this.CboAsignaturas);
             this.Detalles.Controls.Add(this.DtgDetalles);
             this.Detalles.Location = new System.Drawing.Point(15, 421);
-            this.Detalles.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Detalles.Margin = new System.Windows.Forms.Padding(4);
             this.Detalles.Name = "Detalles";
-            this.Detalles.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Detalles.Padding = new System.Windows.Forms.Padding(4);
             this.Detalles.Size = new System.Drawing.Size(832, 313);
             this.Detalles.TabIndex = 18;
             this.Detalles.TabStop = false;
@@ -301,7 +301,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(863, 788);
             this.Controls.Add(this.Detalles);
-            this.Controls.Add(this.Carrera);
+            this.Controls.Add(this.GroupCarrera);
             this.Controls.Add(this.BtnListo);
             this.Controls.Add(this.Confirmar);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -309,8 +309,8 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmModificarDetalles";
             this.Load += new System.EventHandler(this.FrmModificarDetalles_Load);
-            this.Carrera.ResumeLayout(false);
-            this.Carrera.PerformLayout();
+            this.GroupCarrera.ResumeLayout(false);
+            this.GroupCarrera.PerformLayout();
             this.Detalles.ResumeLayout(false);
             this.Detalles.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DtgDetalles)).EndInit();
@@ -326,7 +326,7 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox TxtTitulo;
         private System.Windows.Forms.Button BtnEditar;
-        private System.Windows.Forms.GroupBox Carrera;
+        private System.Windows.Forms.GroupBox GroupCarrera;
         private System.Windows.Forms.GroupBox Detalles;
         private System.Windows.Forms.Button BtnAgregarDetalle;
         private System.Windows.Forms.Label label4;

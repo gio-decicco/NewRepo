@@ -126,3 +126,8 @@ create procedure spEliminarDetalle
 as
 delete DetalleCarrera
 where idCarrera = @idCarrera
+
+create procedure spEliminarAsignatura
+@idAsignatura int
+as
+delete Asignatura where idAsignatura = @idAsignatura

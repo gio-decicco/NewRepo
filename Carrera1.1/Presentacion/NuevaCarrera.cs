@@ -12,26 +12,24 @@ namespace Carrera1._1
 {
     public partial class NuevaCarrera : Form
     {
-        DBHelper oBD;
         Carrera carrera;
         public NuevaCarrera()
         {
             InitializeComponent();
-            oBD = new DBHelper(); 
-            carrera = new Carrera();
+            carrera = Carrera.Instancia();
         }
 
         private void NuevaCarrera_Load(object sender, EventArgs e)
         {
-            cargarProximoId();
             cargarCombo();
+            LblProximoId.Text = carrera.CargarProximoId();
         }
 
         private void cargarCombo()
         {
-            DataTable dt = oBD.consutarAsignaturas();
-            CboAsignaturas.DataSource = dt;
-            CboAsignaturas.ValueMember = "idAsignatura";
+            Asignatura a = Asignatura.Instancia();
+            CboAsignaturas.DataSource = a.Read();
+            CboAsignaturas.ValueMember = "IdAsignatura";
             CboAsignaturas.DisplayMember = "nomAsignatura";
             CboAsignaturas.DropDownStyle = ComboBoxStyle.DropDownList;
         }
@@ -51,13 +49,6 @@ namespace Carrera1._1
         //        DtgDetalles.Rows.Add(lAsignaturas[d.IdAsignatura].Nombre, d.AñoCursado, d.Cuatrimestre);
         //    }
         //}
-
-        private void cargarProximoId()
-        {
-            int id = oBD.consultarProximoId();
-            LblProximoId.Text = "Id Carrera: " + id;
-            
-        }
 
         private void BtnAgregarDetalle_Click(object sender, EventArgs e)
         {
@@ -104,17 +95,17 @@ namespace Carrera1._1
             DtgDetalles.Rows.Add(new object[] {item.Row.ItemArray[0], item.Row.ItemArray[1], TbAño.Text, TbCuatri.Text});
         }
 
-        private bool existe()
-        {
-            foreach (DetalleCarrera detalle in carrera.Detalles)
-            {
-                if (detalle.Asignatura.Nombre == CboAsignaturas.Text)
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
+        //private bool existe()
+        //{
+        //    foreach (DetalleCarrera detalle in carrera.Detalles)
+        //    {
+        //        if (detalle.Asignatura.Nombre == CboAsignaturas.Text)
+        //        {
+        //            return true;
+        //        }
+        //    }
+        //    return false;
+        //}
 
         private bool validar()
         {
@@ -180,7 +171,8 @@ namespace Carrera1._1
             {
                 carrera.NombreCarrrera = TbNombreC.Text;
                 carrera.Titulo = TbTitulo.Text;
-                if (oBD.insertarMaestroDetalle(carrera)==true)
+                DaoMaestroDetalle dao = DaoMaestroDetalle.Instancia();
+                if (dao.Insert(carrera)==true)
                 {
                     MessageBox.Show("Se creó la carrera con éxito!");
                     this.Close();

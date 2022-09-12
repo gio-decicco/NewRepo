@@ -202,9 +202,12 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Datos\DaoAsignaturas.cs" />
+    <Compile Include="Datos\IDaoAsignaturas.cs" />
+    <Compile Include="Datos\IDaoMaestro.cs" />
     <Compile Include="Dominio\Asignatura.cs" />
     <Compile Include="Dominio\Carrera.cs" />
-    <Compile Include="Datos\DBHelper.cs" />
+    <Compile Include="Datos\DaoMaestroDetalle_1.cs" />
     <Compile Include="Dominio\DetalleCarrera.cs" />
     <Compile Include="Presentacion\ABMAsignaturas.cs">
       <SubType>Form</SubType>

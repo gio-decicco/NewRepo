@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
 
-namespace Carrera1._1
+namespace Carrera1._1.Datos
 {
-    internal class DBHelper
+    internal class DaoMaestro : IDao
     {
         SqlCommand cmd;
         SqlConnection cnn;
 
-        public DBHelper()
+        public DaoMaestro()
         {
             cmd = new SqlCommand();
             cnn = new SqlConnection(Properties.Resources.cnnString);
@@ -48,7 +48,7 @@ namespace Carrera1._1
             return consultas;
         }
 
-        public DataTable consultarCarreras(bool activo)
+        public DataTable Read(bool activo)
         {
             DataTable dt = new DataTable();
             conectar();
@@ -155,7 +155,7 @@ namespace Carrera1._1
             return resultado;
         }
 
-        public bool insertarMaestroDetalle(Carrera carrera)
+        public bool Create(Carrera carrera)
         {
             bool resultado = true;
 

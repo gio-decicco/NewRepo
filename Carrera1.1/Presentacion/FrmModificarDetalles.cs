@@ -12,15 +12,11 @@ namespace Carrera1._1.Presentacion
 {
     public partial class FrmModificarDetalles : Form
     {
-        List<Carrera> lCarreras;
         List<Asignatura> lAsignaturas;
-        DBHelper oBD;
+        List<Carrera> lCarreras;
         public FrmModificarDetalles()
         {
             InitializeComponent();
-            lCarreras = new List<Carrera>();
-            lAsignaturas = new List<Asignatura>();
-            oBD = new DBHelper();
         }
 
         private void FrmModificarDetalles_Load(object sender, EventArgs e)
@@ -35,41 +31,18 @@ namespace Carrera1._1.Presentacion
 
         private void cargarComboAsignaturas()
         {
-            DataTable tabla = new DataTable();
-            tabla = oBD.consutarAsignaturas();
-            CboAsignaturas.DataSource = tabla;
-            CboAsignaturas.DisplayMember = "nomAsignatura";
-            CboAsignaturas.ValueMember = "idAsignatura";
-            CboAsignaturas.DropDownStyle = ComboBoxStyle.DropDownList;
-            foreach (DataRow dr in tabla.Rows)
-            {
-                Asignatura a = new Asignatura();
-                a.idAsignatura = Convert.ToInt32(dr[0]);
-                a.Nombre = Convert.ToString(dr[1]);
-                lAsignaturas.Add(a);
-            }
+            Asignatura a = Asignatura.Instancia();
+            lAsignaturas = a.Read();
+            CboAsignaturas.DataSource = lAsignaturas;
+            CboAsignaturas.ValueMember = "IdAsignatura";
+            CboAsignaturas.DisplayMember = "Nombre";
         }
 
-        private void cargarDtg(int selectedIndex)
+
+
+        public void CargarDtg(int selectedIndex)
         {
             DtgDetalles.Rows.Clear();
-            DataTable dt = oBD.consultarDetalles(lCarreras[selectedIndex].IdCarrera);
-            lCarreras[selectedIndex].Detalles.Clear();
-            foreach (DataRow dr in dt.Rows)
-            {
-                DetalleCarrera d = new DetalleCarrera();
-                DataTable tabla = oBD.consutarAsignaturas(Convert.ToInt32(dr[2]));
-                foreach (DataRow dr2 in tabla.Rows)
-                {
-                    Asignatura a = new Asignatura();
-                    a.idAsignatura = Convert.ToInt32(dr2[0]);
-                    a.Nombre = Convert.ToString(dr2[1]);
-                    d.Asignatura = a;
-                }
-                d.AñoCursado = Convert.ToInt32(dr[3]);
-                d.Cuatrimestre = Convert.ToInt32(dr[4]);
-                lCarreras[selectedIndex].AgregarDetalle(d);
-            }
             int idDetalle = 1;
             foreach (DetalleCarrera detalle in lCarreras[selectedIndex].Detalles)
             {
@@ -80,24 +53,18 @@ namespace Carrera1._1.Presentacion
 
         private void cargarLista()
         {
-            lCarreras.Clear();
             LstCarreras.Items.Clear();
-            DataTable dt = oBD.consultarCarreras(true);
-            foreach (DataRow fila in dt.Rows)
+            Carrera c = Carrera.Instancia();
+            lCarreras = c.Read(true);
+            foreach (Carrera carrera in lCarreras)
             {
-                Carrera c = new Carrera();
-                c.IdCarrera = Convert.ToInt32(fila[0]);
-                c.NombreCarrrera = fila[1].ToString();
-                c.Titulo = fila[2].ToString();
-                lCarreras.Add(c);
-                LstCarreras.Items.Add(c.ToString());
+                LstCarreras.Items.Add(carrera.ToString());
             }
-            LstCarreras.SelectedValue = null;
         }
 
         private void LstCarreras_SelectedIndexChanged(object sender, EventArgs e)
         {
-            cargarDtg(LstCarreras.SelectedIndex);
+            CargarDtg(LstCarreras.SelectedIndex);
             cargarCampos(LstCarreras.SelectedIndex);
         }
         private void cargarCampos(int selectedIndex)
@@ -186,7 +153,8 @@ namespace Carrera1._1.Presentacion
                 , MessageBoxButtons.YesNo
                 , MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                if (oBD.modificarDetalle(lCarreras[LstCarreras.SelectedIndex]) == true)
+                DaoMaestroDetalle dao = DaoMaestroDetalle.Instancia();
+                if (dao.Update(lCarreras[LstCarreras.SelectedIndex]) == true)
                 {
                     MessageBox.Show("Se modificó la carrera con éxito!");
                     this.Close();

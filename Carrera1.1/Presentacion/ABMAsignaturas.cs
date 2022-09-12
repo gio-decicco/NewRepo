@@ -13,12 +13,10 @@ namespace Carrera1._1.Presentacion
     public partial class ABMAsignaturas : Form
     {
         List<Asignatura> lAsignaturas;
-        DBHelper oBD;
         public ABMAsignaturas()
         {
             InitializeComponent();
             lAsignaturas = new List<Asignatura>();
-            oBD = new DBHelper();
         }
 
         private void ABMAsignaturas_Load(object sender, EventArgs e)
@@ -29,12 +27,11 @@ namespace Carrera1._1.Presentacion
         private void cargarLista()
         {
             LstAsignaturas.Items.Clear();
-            DataTable tabla = oBD.consutarAsignaturas();
+            DaoMaestroDetalle dao = DaoMaestroDetalle.Instancia();
+            DataTable tabla = dao.consutarAsignaturas();
             foreach (DataRow dr in tabla.Rows)
             {
-                Asignatura a = new Asignatura();
-                a.idAsignatura = Convert.ToInt32(dr[0]);
-                a.Nombre = Convert.ToString(dr[1]);
+                Asignatura a = new Asignatura(Convert.ToString(dr[1]), Convert.ToInt32(dr[0]));
                 lAsignaturas.Add(a);
                 LstAsignaturas.Items.Add(a.ToString());
             }
